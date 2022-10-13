@@ -1,8 +1,8 @@
 # from sqlalchemy import Column ,Integer, String
-# from src.college.app import Base
+# from src.college import app
 #
 #
-# class User(Base):
+# class User(app.Base):
 #     __tablename__ = "Person"
 #
 #     Personid = Column(Integer, primary_key=True, index=True)
