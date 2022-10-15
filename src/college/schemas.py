@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class Person(BaseModel):
+class PersonShemas(BaseModel):
     Personid: int
     LastName: str
     Firstname: str
