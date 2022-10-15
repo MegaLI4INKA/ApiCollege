@@ -5,7 +5,8 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy.orm import Session
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
-SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://fionitos:Cvfhnajy201*@196.254.176.13:3306/db_project"
+SQLALCHEMY_DATABASE_URL = "mssql://User:123@DESKTOP-M0LHBL5/testfastapi?driver=ODBC Driver 17 for SQL Server"
+# SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://fionitos:Cvfhnajy201*@196.254.176.13:3306/db_project"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 Base = declarative_base()
 
@@ -15,11 +16,19 @@ Base = declarative_base()
 class person(Base):
     __tablename__ = "person"
 
-    IdPerson = Column(Integer, primary_key=True, index=True)
+    Personid = Column(Integer, primary_key=True, index=True)
     LastName = Column(String)
     Firstname = Column(String)
     MiddleName = Column(String)
-    Number = Column(String)
+    Numbers = Column(String)
+    Groupid = Column(Integer)
+
+
+class Groups(Base):
+    __tablename__ = "Groups"
+
+    Groupid = Column(Integer, primary_key=True, index=True)
+    GroupName = Column(String)
 
 
 class specialisation(Base):
@@ -30,26 +39,26 @@ class specialisation(Base):
     Code = Column(String)
 
 
-class role(Base):
-    __tablename__ = "role"
-
-    IdRole = Column(Integer, primary_key=True, index=True)
-    RoleName = Column(String, unique=True)
-
-
-class timetable(Base):
-    __tablename__ = "timetable"
-
-    idRaspisanie = Column(Integer, primary_key=True, index=True)
-    LessonNumber = Column(Integer)
-    WeekDay = Column(String, unique=True)
+# class role(Base):
+#     __tablename__ = "role"
+#
+#     IdRole = Column(Integer, primary_key=True, index=True)
+#     RoleName = Column(String, unique=True)
 
 
-class predmet(Base):
-    __tablename__ = "predmet"
+# class timetable(Base):
+#     __tablename__ = "timetable"
+#
+#     idRaspisanie = Column(Integer, primary_key=True, index=True)
+#     LessonNumber = Column(Integer)
+#     WeekDay = Column(String, unique=True)
 
-    idPredmet = Column(Integer, primary_key=True, index=True)
-    PredmetName = Column(String)
+
+# class predmet(Base):
+#     __tablename__ = "predmet"
+#
+#     idPredmet = Column(Integer, primary_key=True, index=True)
+#     PredmetName = Column(String)
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------

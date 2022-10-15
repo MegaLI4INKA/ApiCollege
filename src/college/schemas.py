@@ -7,6 +7,7 @@ class PersonShemas(BaseModel):
     Firstname: str
     MiddleName: str
     Number: str
+    Groupid: int
 
     class Config:
         orm_mode = True
