@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from mysqlx import Column
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from sqlalchemy.orm import sessionmaker, declarative_base, relationship
 from sqlalchemy.orm import Session
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
@@ -21,7 +21,7 @@ class person(Base):
     Firstname = Column(String)
     MiddleName = Column(String)
     Numbers = Column(String)
-    Groupid = Column(Integer)
+    Groupid = Column(Integer, ForeignKey("Groups.Groupid"))
 
 
 class Groups(Base):
@@ -29,6 +29,7 @@ class Groups(Base):
 
     Groupid = Column(Integer, primary_key=True, index=True)
     GroupName = Column(String)
+    persons = relationship('person', backref='PersonGroup')
 
 
 class specialisation(Base):
@@ -45,6 +46,11 @@ class specialisation(Base):
 #     IdRole = Column(Integer, primary_key=True, index=True)
 #     RoleName = Column(String, unique=True)
 
+# class roleperson(Base):
+#     __tablename__ = "roleperson"
+#
+#     IdRole = Column(Integer, primary_key=True, index=True)
+#     IdPerson = Column(Integer, primary_key=True, index=True)
 
 # class timetable(Base):
 #     __tablename__ = "timetable"
