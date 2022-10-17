@@ -29,6 +29,7 @@ class Groups(Base):
 
     Groupid = Column(Integer, primary_key=True, index=True)
     GroupName = Column(String)
+
     persons = relationship('person', backref='PersonGroup')
 
 
