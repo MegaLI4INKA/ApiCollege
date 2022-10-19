@@ -49,7 +49,36 @@ def get_db():
 #     changerole.
 #     return 0
 
-@app.get("/api/getRaspisanie/id/{id}")
-def get_people(id:int, db: Session = Depends(get_db)):
+# ищет расписание по его группы айди
+@app.get("/api/get/raspisanie/id/{id}")
+def get_raspisanie(id: int, db: Session = Depends(get_db)):
     raspisaniesall = db.query(Timetable).filter(Timetable.Idgroup == id).all()
     return raspisaniesall
+
+# ищет пупса по айди
+@app.get("/api/get/person/id/{id}")
+def get_person(id: int, db: Session = Depends(get_db)):
+    person = db.query(Person).filter(Person.IdPerson == id).first()
+    return person
+
+# ищет всех пупсов в какай либо группе
+@app.get("/api/get/persons-to-group/idgroup/{idgroup}")
+def get_person(idgroup: int, db: Session = Depends(get_db)):
+    PersonToGroups = db.query(Person).filter(Person.IdGroup == idgroup).all()
+    return PersonToGroups
+
+# ищет пупса по айди
+@app.get("/api/get/person/id/{id}")
+def get_person(id: int, db: Session = Depends(get_db)):
+    person = db.query(Person).filter(Person.IdPerson == id).first()
+    return person
+
+@app.get("/api/get/predmet/id/{id}")
+def get_person(id:int,db: Session = Depends(get_db)):
+    predmetId = db.query(Predmet).filter(Predmet.idPredmet == id).first()
+    return predmetId
+
+@app.get("/api/get/predmet/all")
+def get_person(db: Session = Depends(get_db)):
+    predmets = db.query(Predmet).all()
+    return predmets
