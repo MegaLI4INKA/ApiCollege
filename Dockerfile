@@ -4,6 +4,7 @@ WORKDIR /PetProdjectFastApi
 
 COPY . .
 
+RUN pip install mysqlclient
 RUN pip install fastapi
 RUN pip install sqlalchemy
 RUN pip install uvicorn

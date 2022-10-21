@@ -1,12 +1,7 @@
-from importlib.metadata import metadata
-
-from fastapi import FastAPI
-from mysqlx import Column
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base, relationship
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import sessionmaker, declarative_base
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-from sqlalchemy.testing.schema import Table
+
 
 # SQLALCHEMY_DATABASE_URL = "mssql://User:123@DESKTOP-M0LHBL5/testfastapi?driver=ODBC Driver 17 for SQL Server"
 SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://fionitos:Cvfhnajy201*@196.254.176.13:3306/db_project"
