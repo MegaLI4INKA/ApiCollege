@@ -17,7 +17,7 @@ def get_db():
 
 @app.get("/api/get/raspisanie/id/{id}")
 def get_raspisanie(id: int, db: Session = Depends(get_db)):
-    raspisaniesall = db.query(Timetable).filter(Timetable.Idgroup == id).all()
+    raspisaniesall = db.query(TimeTable).filter(TimeTable.IdGroup == id).all()
     return raspisaniesall
 
 # ищет пупса по айди
@@ -26,11 +26,11 @@ def get_person(id: int, db: Session = Depends(get_db)):
     person = db.query(Person).filter(Person.IdPerson == id).first()
     return person
 
-# ищет всех пупсов в какай либо группе
+# ищет куратора группы
 @app.get("/api/get/persons-to-group/idgroup/{idgroup}")
 def get_person(idgroup: int, db: Session = Depends(get_db)):
-    PersonToGroups = db.query(Person).filter(Person.IdGroup == idgroup).all()
-    return PersonToGroups
+    KuratorsToGroups = db.query(Person).filter(Person.IdGroup == idgroup).all()
+    return KuratorsToGroups
 
 # ищет пупса по айди
 @app.get("/api/get/person/id/{id}")

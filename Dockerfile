@@ -1,18 +1,11 @@
 FROM python:3.10
 
-WORKDIR /PetProdjectFastApi
+WORKDIR /ApiCollege
 
 COPY . .
 
-RUN pip install mysqlclient
-RUN pip install fastapi
-RUN pip install sqlalchemy
-RUN pip install uvicorn
-RUN pip install mysqlx
-RUN pip install pydantic
-RUN pip install fastapi
-RUN pip install pyodbc
+RUN pip install mysqlclient mysqlclient fastapi pyodbc sqlalchemy uvicorn mysqlx pydantic
 
 EXPOSE 8000
 
-CMD ["python","__main__.py"]
+CMD ["uvicorn","src.college.app:app", "--host", "0.0.0.0", "--port", "8000"]
