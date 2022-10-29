@@ -4,7 +4,12 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 
 # SQLALCHEMY_DATABASE_URL = "mssql://User:123@DESKTOP-M0LHBL5/testfastapi?driver=ODBC Driver 17 for SQL Server"
 # SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:Cvfhnajy201*@192.168.0.2:3306/db_project"
-SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:123@192.168.0.1:3306/db_project"
+
+#SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:123@mysqls:3306/db_project"
+# mysqls - название контейнера в котором находится бд
+# порт указывается тот который указывался в mysql ибо здесь мы порт на пк не прокидываем
+
+SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:123@mysqls:3306/db_project"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 Base = declarative_base()
 
