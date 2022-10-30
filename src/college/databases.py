@@ -5,13 +5,18 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 # SQLALCHEMY_DATABASE_URL = "mssql://User:123@DESKTOP-M0LHBL5/testfastapi?driver=ODBC Driver 17 for SQL Server"
 # SQLALCHEMY_DATABASE_URL = "mysql+mysqldb://root:Cvfhnajy201*@192.168.0.2:3306/db_project"
 
-#SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:123@mysqls:3306/db_project"
+# SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:123@mysqls:3306/db_project"
 # mysqls - название контейнера в котором находится бд
 # порт указывается тот который указывался в mysql ибо здесь мы порт на пк не прокидываем
 
-SQLALCHEMY_DATABASE_URL = "mysql+mysqlconnector://root:123@mysqls:3306/db_project"
+link_name_container_db_mysql = "mysqldb"
+link_name_db_mysql_dbname = "db_project"
+link_name_db_mysql_port = "3306"
+
+SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://root:123@{link_name_container_db_mysql}:{link_name_db_mysql_port}/{link_name_db_mysql_dbname}"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 Base = declarative_base()
+
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------
 # так как при запихивании этого в отдельный файл я пока оставлю это тут)
@@ -78,7 +83,6 @@ class RolePerson:
     Column('IdPerson', ForeignKey('Person.IdPerson'), nullable=False, index=True)
 
 
-
 class TimeTable(Base):
     __tablename__ = 'TimeTable'
 
@@ -96,7 +100,6 @@ class Specialisationn(Base):
     SpecialName = Column(String(255), nullable=False)
     Code = Column(String(255), nullable=False)
     IdCvalification = Column(ForeignKey('Cvalification.IdCvalification'), nullable=False, index=True)
-
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------

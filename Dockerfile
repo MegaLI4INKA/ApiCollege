@@ -4,7 +4,7 @@ WORKDIR /ApiCollege
 
 COPY . .
 
-RUN pip install mysqlclient mysqlclient fastapi pyodbc sqlalchemy uvicorn mysqlx pydantic
+RUN pip install mysqlclient mysqlclient fastapi pyodbc sqlalchemy uvicorn mysqlx pydantic requests
 
 EXPOSE 8000
 
