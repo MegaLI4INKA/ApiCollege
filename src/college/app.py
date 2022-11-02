@@ -79,3 +79,15 @@ def get_person_ball(id_student, group: str):
 def get_person_ocenca(id_student, group: str):
     response = requests.get(f"http://{link_name_container_vitalika}:8080/get/bad_point/group/{group}/id_student/{id_student}")
     return response.json()
+
+# вывод всех учеников со средним баллом
+@app.get("/get/all_middle_grade/group/{link_table}")
+def get_person_ocenca(link_table: str):
+    response = requests.get(f"http://{link_name_container_vitalika}:8080/get/all_middle_grades/group/{link_table}")
+    return response.json()
+
+# все оценочки студента
+@app.get("/get/grade/group/{link_table}/id_student/{id_student}")
+def get_person_ocenca(link_table: str, id_student: str):
+    response = requests.get(f"http://{link_name_container_vitalika}:8080/get/grades/group/{link_table}/id_student/{id_student}")
+    return response.json()
