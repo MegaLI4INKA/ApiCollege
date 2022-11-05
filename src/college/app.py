@@ -92,6 +92,8 @@ def get_person_ocenca(link_table: str):
 @app.get("/get/grade/group/{link_table}/id_student/{id_student}")
 def get_person_ocenca(link_table: str, id_student: str):
     response = requests.get(f"http://{link_name_container_vitalika}:8080/get/grades/group/{link_table}/id_student/{id_student}")
+    # lisjson = response.json()
     # lisjson["all_grades"][0]["GroupName"] = "230c"  если надо будет к джейсону витали добавлять название группы и предмета то юзать это
     # lisjson["all_grades"][0]["PredmetName"] = "matan"  если надо будет к джейсону витали добавлять название группы и предмета то юзать это
+    # return lisjson
     return response.json()
