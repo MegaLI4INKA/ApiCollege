@@ -3,6 +3,8 @@ from sqlalchemy.orm import Session
 from src.college.databases import *
 import requests
 import redis
+import rejson
+from fastapi.middleware.cors import CORSMiddleware
 
 link_name_container_vitalika = "Apiv"
 
@@ -11,6 +13,19 @@ link_name_container_vitalika = "Apiv"
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:8080",
+    "http://localhost:8000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 def get_db():
@@ -22,11 +37,11 @@ def get_db():
 
 
 # берет расписание по группе в редиске
-# @app.get("/api/get/raspisanie/id_group/{id}")
-# def get_raspisanie(id: int):
-#     redis_client = redis.Redis(host="localhost",port=6379,db=0)
-#     return redis_client.json()
-
+@app.get("/api/get/raspisanie_group/id/group/{id}")
+def get_raspisanie(id:str):
+    rj = rejson.Client(host='redis', port=6379, decode_responses=True)
+    lsitic = rj.jsonget(id)
+    return rj.jsonget(id)
 
 @app.get("/api/get/raspisanie/id/group/{id}")
 def get_raspisanie(id: int, db: Session = Depends(get_db)):

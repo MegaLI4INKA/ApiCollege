@@ -9,7 +9,7 @@ from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 # mysqls - название контейнера в котором находится бд
 # порт указывается тот который указывался в mysql ибо здесь мы порт на пк не прокидываем
 
-link_name_container_db_mysql = "mysqldb"
+link_name_container_db_mysql = "mysqls"
 link_name_db_mysql_dbname = "db_project"
 link_name_db_mysql_port = "3306"
 
