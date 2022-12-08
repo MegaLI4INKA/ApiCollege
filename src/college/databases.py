@@ -13,6 +13,7 @@ link_name_container_db_mysql = "mysqls"
 link_name_db_mysql_dbname = "db_project"
 link_name_db_mysql_port = "3306"
 
+
 SQLALCHEMY_DATABASE_URL = f"mysql+mysqlconnector://root:123@{link_name_container_db_mysql}:{link_name_db_mysql_port}/{link_name_db_mysql_dbname}"
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 Base = declarative_base()

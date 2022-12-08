@@ -14,10 +14,7 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-origins = [
-    "http://localhost:8080",
-    "http://localhost:8000",
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,7 +24,6 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
 def get_db():
     db = SessionLocal()
     try:
@@ -35,6 +31,11 @@ def get_db():
     finally:
         db.close()
 
+
+@app.get("/api/get/raspisanie_group/Allgroup")
+def get_group_all(db: Session = Depends(get_db)):
+    groups_name = db.query(Group.GroupName).all()
+    return groups_name
 
 # берет расписание по группе в редиске
 @app.get("/api/get/raspisanie_group/id/group/{id}")
