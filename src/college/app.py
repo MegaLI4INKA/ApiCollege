@@ -32,6 +32,11 @@ def get_db():
         db.close()
 
 
+@app.get("/api/get/Time/TimeLessons")
+def get_group_all():
+    redisclient = rejson.Client(host='redis', port=6379, decode_responses=True)
+    return redisclient.jsonget("lesson_calls")
+
 @app.get("/api/get/raspisanie_group/Allgroup")
 def get_group_all(db: Session = Depends(get_db)):
     groups_name = db.query(Group.GroupName).all()
